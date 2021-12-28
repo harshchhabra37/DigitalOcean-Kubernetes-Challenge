@@ -96,33 +96,3 @@ Now lets try to push a container(httpd) image to Harbor
 
 ![image](https://user-images.githubusercontent.com/60788180/147609152-08195b3d-9da3-43ee-8359-c451209537b6.png)
 
-
-first we need to tag our container 
-
-```
-docker tag httpd:alpine hub.chhabraharsh37.me/k8s/https:latest
-```
->OUTPUT
-```
-PS C:\LAB\harbor> docker tag httpd:2.4.52-alpine hub.jagan-sekaran.me/k8s/https:latest
-PS C:\LAB\harbor>
-PS C:\LAB\harbor> docker images
-![image](https://user-images.githubusercontent.com/60788180/147609502-02bb1da1-919d-4595-bb6d-928a9eb1c56d.png)
-
-```
-Login to `hub.jagan-sekaran.me` on Docker
-
-*NOTE: if DNS is not resolved edit hosts file and add the IP of Harbor*
-
-```
-docker login hub.jagan-sekaran.me
-```
->OUTPUT
-```
-PS C:\Users\hp\Desktop\DigitalOcean-Kubernetes-Challenge>> docker login hub.chhabraharsh37.me
-Username: admin
-Password: 
-Login Succeeded
-```
-Now we can push our image to our hub
-
