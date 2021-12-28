@@ -2,10 +2,20 @@
 
 Attempting Challenge: Deploy an internal container registry for DigitalOcean's Kubernetes program.<br>
 
+## Installing Prerequisites 
+We have to first install Chocolately to be able to install kubectl (Reference: https://chocolatey.org/install#individual):
+
+    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+Now needed things to install, using Chocolately:
+
+    choco install kubernetes-helm
+    choco install kubernetes-cli
+    kubectl version --client
+
 ## Steps
 
-Step 1: We have to install `doctl` - DigitalOcean CLI tool<br>
-        Reference: https://docs.digitalocean.com/reference/doctl/how-to/install/
+Step 1: We have to install `doctl` - DigitalOcean CLI tool (Reference: https://docs.digitalocean.com/reference/doctl/how-to/install)
 
 Step: 2: Create a Kubernetes cluster
          (Either by using command line doctl or through DigitalOcean web platform)
@@ -91,8 +101,8 @@ we have to use the external IP to login to Harbor
 
 ![image](https://user-images.githubusercontent.com/60788180/147614249-97ea6b1f-c9ab-41f1-a4ff-67a6abbd5b2e.png)
 
+![image](https://user-images.githubusercontent.com/60788180/147614855-47dcc7cf-b378-4d97-8014-7bbc3f764ebb.png)
 
-![image](https://user-images.githubusercontent.com/60788180/147613844-5222ff93-6b3d-44c6-87f7-88e917903106.png)
 
 Create a new project and make it public, so pulling image doesn't need authentication.
 
@@ -151,7 +161,7 @@ latest: digest: sha256:c7b8040505e2e63eafc82d37148b687ff488bf6d25fc24c8bf01d71f5
 ```
 Image available at Harbor 
 
-![image](https://user-images.githubusercontent.com/60788180/147614077-726e4ff4-8c8c-4108-adb2-593f58ea4624.png)
+![image](https://user-images.githubusercontent.com/60788180/147614929-08cb8a9e-0ed0-498a-ad33-bed86dda03ff.png)
 
 Lets deploy this app using [httpd-deployment.yaml](httpd-deployment.yaml) file
 
