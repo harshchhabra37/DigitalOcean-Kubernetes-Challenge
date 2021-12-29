@@ -25,20 +25,20 @@ doctl kubernetes cluster create do-k8s-challenge
 ```
 >OUTPUT
 
-![image](https://user-images.githubusercontent.com/60788180/147603136-38d7b69b-863c-40b1-a02b-62642eb2ce31.png)
+![image](images/image 1.png)
 
 It take few minutes in creating the cluster, after that we get this output.
 After 5 to 10 minutes our cluster is created successfully and we get this output.
 
-![image](https://user-images.githubusercontent.com/60788180/147611042-951029bf-2c47-429c-8374-c49970813dcd.png)
+![image](images/image 2.png)
 
 Through DigitalOcean web platform we can set Cluster settings according to us.
 
-![image](https://user-images.githubusercontent.com/60788180/147611113-bcb6375f-a84d-4b8a-b210-30b02057bd12.png)
+![image](images/image 3.png)
 
 We can also download Config file.
 
-![image](https://user-images.githubusercontent.com/60788180/147611150-30aabaf5-76ca-4a4e-ac37-2cedb4955199.png)
+![image](images/image 4.png)
 
 
 Step 3: Harbor installation steps
@@ -64,16 +64,16 @@ open `harbor-values.yaml` in a editor
 
 change the external URL value to `externalURL: https://hub.chhabraharsh37.me` 
 
-![image](https://user-images.githubusercontent.com/60788180/147604327-95e4008c-0065-41c6-a41f-284bc8387059.png)
+![image](images/image 5.png)
 
 
 set admin password `harborAdminPassword: "<YOUR PASSWORD>", we can set it as "Harbor123"`
 
-![image](https://user-images.githubusercontent.com/60788180/147607174-9d7ae317-14d7-4125-a2a4-71ad876b4b6b.png)
+![image](images/image 6.png)
 
 and commonName `commonName: 'hub.chhabraharsh37.me'`
 
-![image](https://user-images.githubusercontent.com/60788180/147604482-6c3426d7-85ab-49a1-8ae8-af8abd7c712b.png)
+![image](images/image 7.png)
 
 
 
@@ -84,33 +84,33 @@ helm install harbor bitnami/harbor --values harbor-values.yaml -n harbor --creat
 >OUTPUT
 
 
-![image](https://user-images.githubusercontent.com/60788180/147611541-2afd56d3-3661-4ff0-a29f-2537df25a036.png)
+![image](images/image 8.png)
 
 Check pods status - (everything is running now)
 
-![image](https://user-images.githubusercontent.com/60788180/147611706-dbfbe3ba-5c34-4185-bdd5-d002207578c7.png)
+![image](images/image 9.png)
 
 Get External-IP of Harbor loadbalancer
 
-![image](https://user-images.githubusercontent.com/60788180/147611781-ebb89c9b-bba9-4c5e-93de-e244043c921e.png)
+![image](images/image 10.png)
 
 
 we have to use the external IP to login to Harbor
 - UserName: admin
 - Password: <PASSWORD_entered_on_yaml>
 
-![image](https://user-images.githubusercontent.com/60788180/147614249-97ea6b1f-c9ab-41f1-a4ff-67a6abbd5b2e.png)
+![image](images/image 11.png)
 
-![image](https://user-images.githubusercontent.com/60788180/147614855-47dcc7cf-b378-4d97-8014-7bbc3f764ebb.png)
+![image](images/image 12.png)
 
 
 Create a new project and make it public, so pulling image doesn't need authentication.
 
-![image](https://user-images.githubusercontent.com/60788180/147613986-cf1c3a43-8119-4189-9267-aee3ed48bf49.png)
+![image](images/image 13.png)
 
 Now lets try to push a container(httpd) image to Harbor
 
-![image](https://user-images.githubusercontent.com/60788180/147612078-43535349-78c9-40c2-a25b-8789ef0aeb4a.png)
+![image](images/image 14.png)
 
 first we need to tag our container, so we do this 
 
@@ -121,7 +121,7 @@ docker tag httpd:alpine hub.chhabraharsh37.me/k8s/https:latest
 ```
 docker tag httpd:alpine hub.chhabraharsh37.me/k8s/https:latest
 ```
-![image](https://user-images.githubusercontent.com/60788180/147612222-fff9c319-0a10-4faa-a43f-4c19fac2d2b9.png)
+![image](images/image 15.png)
 
 
 Login to `hub.chhabraharsh37.me` on Docker
@@ -139,7 +139,7 @@ Password:
 Login Succeeded
 ```
 
-![image](https://user-images.githubusercontent.com/60788180/147612463-7f73b494-579b-46a8-9a58-3a7202f49cf2.png)
+![image](images/image 16.png)
 
 Now we can push our image to our hub
 
@@ -161,7 +161,7 @@ latest: digest: sha256:c7b8040505e2e63eafc82d37148b687ff488bf6d25fc24c8bf01d71f5
 ```
 Image available at Harbor 
 
-![image](https://user-images.githubusercontent.com/60788180/147614929-08cb8a9e-0ed0-498a-ad33-bed86dda03ff.png)
+![image](images/image 17.png)
 
 Lets deploy this app using [httpd-deployment.yaml](httpd-deployment.yaml) file
 
